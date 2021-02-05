@@ -35,7 +35,6 @@ do
 done
 }
 
-
 # Uninstall the virtual microphone.
 function stop()
 {
@@ -49,7 +48,7 @@ rm ~/.config/pulse/client.conf
 
 function usage()
 {
-echo "Usage: $0 {start|stop|show|restart}"
+echo "Usage: $0 {start|stop|restart}"
 exit 1
 }
 
@@ -59,9 +58,6 @@ case "$1" in
   ;;
   stop)
     stop  
-  ;;
-  show)
-    show
   ;;
   restart)
     stop
