@@ -18,11 +18,11 @@ function start()
 {
 # Load the "module-pipe-source" module to read audio data from a FIFO special file.
 echo "Creating virtual microphone."
-pactl load-module module-pipe-source source_name=virtmic file=${VIRTMICPATH}/virtmic format=s16le rate=16000 channels=1
+pacmd load-module module-pipe-source source_name=virtmic file=${VIRTMICPATH}/virtmic format=s16le rate=16000 channels=1
 
 # Set the virtmic as the default source device.
 echo "Set the virtual microphone as the default device."
-pactl set-default-source virtmic
+pacmd set-default-source virtmic
 
 # Create a file that will set the default source device to virtmic for all PulseAudio client applications.
 echo "default-source = virtmic" > ~/.config/pulse/client.conf
@@ -41,7 +41,7 @@ function stop()
 echo ""
 echo "virtmic interrupted... cleaning up..."
 echo "removing virtual microphone"
-pactl unload-module module-pipe-source
+pacmd unload-module module-pipe-source
 echo "removing the virtual microphone as the default device."
 rm ~/.config/pulse/client.conf
 }
