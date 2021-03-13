@@ -18,20 +18,22 @@ DEFAULTDEVICE="/dev/sdb"
 set -e
 
 ## display usage on invalid amount of arguments or help arguments
-usage()
+usage() 
 {
-echo "usage: $SCRIPT"
-echo "       $SCRIPT -h|--help"
-echo "arguments"
-echo "  -h|--help  display help information"
-echo ""
-exit 1
+  echo "usage: $SCRIPT"
+  echo "       $SCRIPT -h|--help"
+  echo "test SD card / USB stick for fake sizes or bad storage with f3probe and badblocks"
+  echo "" 
+  echo "arguments"
+  echo "  -h|--help  display help information"
+  echo ""
+  exit 1
 }
 
 #if arguments > 1 or first argument == -h| --help show usage
 if [ $# -gt 1 -o "$1" == "-h" -o "$1" == "--help" ]
 then
-usage
+  usage
 fi
 
 read -p  "device to test? [${DEFAULTDEVICE}]: " DEVICE
@@ -56,8 +58,8 @@ fi
 MOUNTED=`mount | grep ${DEVICE} | awk '{ print $1 }'`
 for MOUNT in ${MOUNTED}
 do
-echo "umounting ${MOUNT}"
-umount ${MOUNT}
+  echo "umounting ${MOUNT}"
+  umount ${MOUNT}
 done
 
 sleep 5
